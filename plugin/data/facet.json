@@ -1,0 +1,26 @@
+{
+
+    "facets":[
+        {"field": "source.fit", "display": "Fit","size":"10"},
+        {"field": "source.color",  "display": "Color","size":"10"},
+        {"field": "source.neck","display": "Neck","size":"10"},
+        {"field": "source.retail","display":"Price",
+            "range":[
+            {"name":"0-50","from":"*","to":"50"},
+            {"name":"51-100","from":"51","to":"100"},
+            {"name":"101-150","from":"101","to":"150"},
+            {"name":"151-200","from":"151","to":"200"},
+            {"name":"201-","from":"201","to":"*"}
+        ]}
+    ],
+    "collection":[  ],
+    "sortBtns":[
+		{"field":"source.color","display":"Color"},
+		{"field":"source.retail","display":"Price"}
+    ],
+    "matchAny":"off",
+    "sortDir":"desc",
+    "pageSize": "9",
+    "showAutoSuggest": "true"
+}
+

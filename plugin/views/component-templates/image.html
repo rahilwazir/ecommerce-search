@@ -1,0 +1,38 @@
+<div class="row-fluid image" style="height:100x;">
+    <a href="{{productlink}}" target="_blank">
+        <img class="thumbnail" ng-model="content.image" style="float:none; width:255px; margin:0 5px 10px 0; max-height:340px;"
+             ng-src="{{content.image}}">
+    </a>
+</div>
+
+<div class="row-fluid title">
+    <a href="{{productlink}}" target="_blank"><b>{{content.title}}</b></a>
+</div>
+
+<div class="row-fluid price">
+    <div class="price" ng-show="saleprice">
+        <s>${{price}}</s> <b>${{saleprice}}</b>
+    </div> 
+    <div class="single-price" ng-show="!saleprice">
+        <b>${{price}}</b>
+    </div> 
+</div>
+
+<div class="row-fluid hide">
+    <div ng-switch on="content.context">
+        <div ng-switch-when="undefined" ng-show="content.description">
+            {{content.description}}
+        </div>
+        <div ng-switch-default>
+             <span ng-repeat="text in formatData(content.context['#text']) track by $index">
+                   ...{{text}} <b>{{formatData(content.context.highlight)[$index]}}</b>
+             </span>
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid hide">
+    <i>
+        {{getLastModified(content.lastmodified)}}
+    </i>
+</div>
