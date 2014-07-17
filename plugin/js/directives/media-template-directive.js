@@ -61,19 +61,14 @@ angular.module('searchblox.contentItem', []).
                         return obj;
                 }
 
-                $scope.returnSexyData = function(data) {
-                    return data;
-                }
-
                 // content url generator
                 $scope.computeResultToBind = function (result) {
-                    var result_data = $scope.returnSexyData(result);
-                    var source = result_data.source;
-                    var recstr = JSON.stringify(result_data.image);
-                    $scope.image = source.image;
-                    $scope.price = source.price;
-                    $scope.saleprice = source.saleprice;
-                    $scope.productlink = source.productlink;
+                    // console.log(result);
+                    var recstr = JSON.stringify(result.image);
+                    $scope.image = result.image;
+                    $scope.retail = result.retail;
+                    $scope.saleprice = result.saleprice;
+                    $scope.productlink = result.productlink;
                     var colid = result.col;
                     recstr = recstr.substring(1, recstr.length - 1);
 

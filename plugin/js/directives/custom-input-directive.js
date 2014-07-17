@@ -115,7 +115,7 @@ angular.module('searchblox.custominput',[])
             $scope.matchAll = function () {
                 $scope.searchParam = $.trim($scope.searchParam.replace(/ OR /gi, ' '));
                 $scope.searchParam = ($scope.searchParam.replace(/ /gi, ' AND '));
-                $scope.doSearch();
+                $scope.onsearch();
 
             }
             $scope.matchAny = function () {

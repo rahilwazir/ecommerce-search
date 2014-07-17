@@ -129,7 +129,6 @@ angular.module('searchblox.controller', [])
                     
                     try {
                         autocompleteSearch.parseResults($scope.parsedSearchResults, $scope.suggestionList.items);
-                        console.log($scope.parsedSearchResults);
                     } catch (e) {
                         autocompleteSearch.parseResults($scope.parsedSearchResults);
                     }
@@ -355,9 +354,10 @@ angular.module('searchblox.controller', [])
 
             // check if there is atleast one filter in the facet
             $scope.hasFacets = function () {
-
                 if ($scope.parsedSearchResults !== undefined && $scope.parsedSearchResults !== null
-                    && $scope.parsedSearchResults.facets !== null) {
+                    && $scope.parsedSearchResults.facets !== null
+                    && Number($scope.parsedSearchResults.found) > 0
+                ) {
 
                     for (var i in $scope.parsedSearchResults.facets) {
                         //for (var i = 0, l = $scope.parsedSearchResults.facets.length; i < l; i++) {
