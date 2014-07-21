@@ -1,7 +1,7 @@
 Ecommerce faceted-search
 ==============
 
-Angular based faceted search front-end for SearchBlox
+Angular based Ecommerce faceted search front-end for SearchBlox
 
 - Download the plugin folder into the SearchBlox installation under /searchblox to use the package. 
 - Rename the existing the /plugin folder if available.
