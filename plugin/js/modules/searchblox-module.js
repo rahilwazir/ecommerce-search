@@ -14,6 +14,40 @@ var KEYS = {
     down: 40,
     comma: 188
 };
-(function() {
-	var app = angular.module('searchbloxModule', ['facetModule','searchblox.controller', 'searchblox.custominput','searchblox.autocomplete','searchblox.factory','searchblox.trust','autocomplete.search','searchblox.service', 'ui.bootstrap', 'ngSanitize','searchblox.contentItem']);
-})();
+angular.module('searchbloxModule', [
+    'facetModule',
+    'searchblox.controller',
+    'searchblox.custominput',
+    'searchblox.autocomplete',
+    'searchblox.factory',
+    'searchblox.trust',
+    'autocomplete.search',
+    'searchblox.service',
+    'ui.bootstrap',
+    'ngRoute',
+    'ngSanitize',
+    'searchblox.contentItem',
+    'rw.ui-slider'
+])
+.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    $routeProvider
+    .when('/', {
+        title: 'SearchBlox Ecommerce Search',
+        templateUrl: 'views/main.html',
+        controller: 'searchbloxController'
+    })
+    .otherwise({
+        redirecTo: '/'
+    });
+
+    $locationProvider.html5Mode(false);
+}])
+.run(['$rootScope', '$route', function($rootScope, $route) {
+    $rootScope.ddate = new Date().getFullYear();
+
+    $rootScope.$on('$routeChangeSuccess', function(oVal, nVal) {
+        if (oVal !== nVal) {
+            document.title = $route.current.title;
+        }
+    });
+}]);

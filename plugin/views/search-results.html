@@ -26,41 +26,11 @@
 	</span>
 
     <div class="row" style="margin-top:20px;">
-        <div class="col-sm-3 col-md-3 sidebar left-nav colorBg" ng-show="hasFacets()">
-
-            <!-- <div class="collapse navbar-collapse">
-            	<h4>Sort By</h4>
-            	<div id="sort_btn_aligner" style="text-align:center;">
-     				<div class="btn-group" data-toggle="buttons">
-            			<div class="btn btn-warning disabled">Sort By : </div>
-            			<div ng-repeat="sortBtn in sortBtns" ><div class="btn btn-primary" data-ng-click="doSort(sortBtn['sortVal'])">
-            				{{sortBtn['display']}}
-            			</div></div>
-            			<div ng-switch on="sortDir">
-    						<div ng-switch-when="asc">
- 								<div class="btn btn-info" id="direction" dir="asc" data-ng-click="doDirector('desc')">
-									<span class="glyphicon glyphicon-arrow-up"></span>
- 								</div>
-    						</div>
-    						<div ng-switch-default>
- 								<div class="btn btn-info" id="direction" dir="desc" data-ng-click="doDirector('asc')">
-									<span class="glyphicon glyphicon-arrow-down"></span>
- 								</div>
-    						</div>
-						</div>
-            		</div>
-            	</div>
-        	</div> -->
-        	
-        	<span>
-        	<!--	<div class="" id="facetview_leftcol_percolator" style="float: left; ">
-                  <a class="btn btn-warning" href="#">Create Alert</a>
-                </div>-->
+        <div class="col-sm-3 col-md-3 sidebar left-nav colorBg" ng-show="hasFacets()">        	
+            <span>
                 <br><br>
-                <div>
-        				{{parsedSearchResults.found}} results found
-        		</div>
-        	</span>
+                <div ng-bind="parsedSearchResults.found + ' results found'"></div>
+            </span>
 
             <div class="col-lg-12" ng-repeat="item in selectedItems" slide-show="showInput">
                 <a id="item['id']" href="javascript:void(0)" data-ng-click="removeItem($index)" class="btn btn-primary btn-xs col-lg-9 button-wrap">
@@ -70,8 +40,15 @@
             </div>
 
 			<span>
-            <div ng-repeat="facet in parsedSearchResults.facets">
-                <h5 style="font-weight: bold">{{facetMap[facet["name"]]["display"]}}</h5>
+            <div ng-repeat="facet in parsedSearchResults.facets" ng-if="parsedSearchResults.records.length">
+                <h5 style="font-weight: bold" ng-bind="facetMap[facet['name']]['display']"></h5>
+                <rw-slider
+                        range="true"
+                        ng-if="facetMap[facet['name']]['slider']"
+                        values="[0, 0]"
+                        search-name="facet['name']"
+                        search-data="facetMap[facet['name']]['range']"
+                ></rw-slider>
                 <ul>
                     <li ng-repeat="filter in facet[facet['name']][1]">
                         <a href data-ng-click="doSearchByFilter(filter, facet['name'])" ng-show="filter['@name']">
